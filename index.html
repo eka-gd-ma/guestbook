@@ -32,11 +32,12 @@ h1 {
 #guestbook {
         position: fixed;
         top: 0;
-        left: 48.5%;
+        left: 52%;
         transform: translateX(-50%);
         width: 300px;
         padding: 15px;
         text-align: center;
+        flex-direction: column;
     }
 
 #guestbook input[type="text"],
@@ -57,10 +58,11 @@ h1 {
     }
 
 #entries {
+        display: flex;
         position: fixed;
         top: 0;
         right: 0;
-        width: 500px;
+        width: 400px;
         padding: 20px;
         margin-top: 15px;
         text-align: left;
@@ -107,6 +109,33 @@ h1 {
     width: 0px;
     background: transparent;
     } 
+
+/* Media queries for mobile layout */
+@media only screen and (max-width: 600px) {
+    #header {
+        display: none; /* Hide the header on mobile devices */
+    }
+
+    #content {
+        padding-top: 320px; /* Adjust the padding to accommodate the header image */
+    }
+}
+
+    #background-image-2 {
+        display: none; /* Remove background image on mobile devices */
+    }
+
+    #guestbookForm {
+        width: 100%;
+    }
+
+    #entry-container {
+        max-width: none;
+    }
+
+    #entries {
+        order: 2; /* Change the order of the entries */
+    }
 </style>
 </head>
 
@@ -120,6 +149,7 @@ h1 {
     <img src="images/header.png" alt="Header Image">
 </div>
 
+<div id="content">
 <div id="guestbook">
     <h1>DIGITAL GUESTBOOK</h1>
     <form id="guestbookForm">
@@ -129,9 +159,11 @@ h1 {
     </form>
 </div>
 
+
 <div id="entries">
     <div id="entry-container">
     <!-- Entries will be displayed here -->
+</div>
 </div>
 </div>
 
