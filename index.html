@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>stand-in guestbook</title>
+<style>
+body {
+        margin: 0;
+        background-color: white;
+    }
+
+h1 {
+        font-family: "Trattatello";
+        font-size: 29px;
+        line-height: 80%;
+    }    
+
+#header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 500px;
+        padding: 10px;
+        margin-right: 25px;
+    }
+
+#header img {
+        max-width: 100%;
+    }
+
+#guestbook {
+        position: fixed;
+        top: 0;
+        left: 48.5%;
+        transform: translateX(-50%);
+        width: 300px;
+        padding: 15px;
+        text-align: center;
+    }
+
+#guestbook input[type="text"],
+#guestbook textarea,
+#guestbook input[type="submit"] {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        border: 2px solid black;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+#guestbook input[type="submit"] {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+    }
+
+#entries {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 500px;
+        padding: 20px;
+        margin-top: 15px;
+        text-align: left;
+        max-width: calc(100% - 500px); /* Adjust the width as needed */
+        overflow-wrap: break-word; /* Allow long words to break */
+        font-family: "ocr-a-std", monospace;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+.entry {
+        margin-bottom: 10px;
+    }
+
+#entry-container {
+  max-height: 800px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
+
+#background-image {
+  position: fixed;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 300px; /* Adjust the width of the image */
+  height: 300px; /* Adjust the height of the image */
+  background-image: url('images/scribble.png');
+  background-size: cover;
+  z-index: -1;
+}
+
+#background-image-2 {
+  position: fixed;
+  bottom: 0;
+  left: 49%;
+  transform: translateX(-50%);
+  width: 300px; /* Adjust the width of the image */
+  height: 300px; /* Adjust the height of the image */
+  background-image: url('images/pat.gif');
+  background-size: cover;
+  z-index: -1;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    } 
+</style>
+</head>
+
+
+<body>
+
+<div id="background-image"></div>
+<div id="background-image-2"></div>
+
+<div id="header">
+    <img src="images/header.png" alt="Header Image">
+</div>
+
+<div id="guestbook">
+    <h1>DIGITAL GUESTBOOK</h1>
+    <form id="guestbookForm">
+        <input type="text" id="name" placeholder="name" required>
+        <textarea id="message" placeholder="message" rows="4" required></textarea>
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<div id="entries">
+    <div id="entry-container">
+    <!-- Entries will be displayed here -->
+</div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const guestbookForm = document.getElementById("guestbookForm");
+        const entryContainer = document.getElementById("entry-container");
+
+        // Load entries from local storage
+        function loadEntries() {
+            const savedEntries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
+            savedEntries.forEach(function(entry) {
+                displayEntry(entry.name, entry.message);
+            });
+        }
+
+        // Display entry with a random color
+        function displayEntry(name, message) {
+            const entry = document.createElement("div");
+            entry.classList.add("entry");
+
+            const nameElement = document.createElement("span");
+            nameElement.classList.add("name");
+            nameElement.textContent = name + ": ";
+            entry.appendChild(nameElement);
+
+            const messageElement = document.createElement("span");
+            messageElement.classList.add("message");
+            messageElement.textContent = message;
+            entry.appendChild(messageElement);
+
+            // Generate random color for each entry
+            const randomColor = getRandomColor();
+            entry.style.color = randomColor;
+
+            entryContainer.appendChild(entry);
+        }
+
+        // Generate a random color
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Load existing entries on page load
+        loadEntries();
+
+        // Event listener for form submission
+        guestbookForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const nameInput = document.getElementById("name");
+            const messageInput = document.getElementById("message");
+
+            const name = nameInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (name === "" || message === "") {
+                alert("Please fill in both name and message fields.");
+                return;
+            }
+
+            // Display entry with a random color
+            displayEntry(name, message);
+
+            // Save entry to local storage
+            const savedEntries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
+            savedEntries.push({ name: name, message: message });
+            localStorage.setItem("guestbookEntries", JSON.stringify(savedEntries));
+
+            // Clear form inputs after adding entry
+            nameInput.value = "";
+            messageInput.value = "";
+        });
+    });
+</script>
+
+</body>
+</html>
