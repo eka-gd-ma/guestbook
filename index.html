@@ -66,8 +66,8 @@ h1 {
         padding: 20px;
         margin-top: 15px;
         text-align: left;
-        max-width: calc(100% - 500px); /* Adjust the width as needed */
-        overflow-wrap: break-word; /* Allow long words to break */
+        max-width: calc(100% - 500px); /* adjust width */
+        overflow-wrap: break-word; /* break lines */
         font-family: "ocr-a-std", monospace;
         font-weight: 400;
         font-style: normal;
@@ -79,8 +79,8 @@ h1 {
 
     #entry-container {
     max-width: 600px;
-    overflow-y: auto; /* Enable vertical scrolling */
-    max-height: 700px; /* Set a fixed height */
+    overflow-y: auto; /* vertical scrolling */
+    max-height: 700px; /* fixed height */
 }
 
 
@@ -88,8 +88,8 @@ h1 {
   position: fixed;
   bottom: 0;
   transform: translateX(-50%);
-  width: 300px; /* Adjust the width of the image */
-  height: 300px; /* Adjust the height of the image */
+  width: 300px; 
+  height: 300px; /*
   background-image: url('images/scribble.png');
   background-size: cover;
   z-index: -1;
@@ -100,8 +100,8 @@ h1 {
   bottom: 0;
   left: 49%;
   transform: translateX(-50%);
-  width: 300px; /* Adjust the width of the image */
-  height: 300px; /* Adjust the height of the image */
+  width: 300px; 
+  height: 300px; 
   background-image: url('images/pat.gif');
   background-size: cover;
   z-index: -1;
@@ -112,19 +112,19 @@ h1 {
     background: transparent;
     } 
 
-/* Media queries for mobile layout */
+
 @media only screen and (max-width: 600px) {
     #header {
-        display: none; /* Hide the header on mobile devices */
+        display: none; /* hide header on mobile */
     }
 
     #content {
-        padding-top: 320px; /* Adjust the padding to accommodate the header image */
+        padding-top: 320px; 
     }
 }
 
     #background-image-2 {
-        display: none; /* Remove background image on mobile devices */
+        display: none;
     }
 
     #guestbookForm {
@@ -136,7 +136,7 @@ h1 {
     }
 
     #entries {
-        order: 2; /* Change the order of the entries */
+        order: 2;
     }
 </style>
 </head>
@@ -174,7 +174,7 @@ h1 {
         const guestbookForm = document.getElementById("guestbookForm");
         const entryContainer = document.getElementById("entry-container");
 
-        // Load entries from local storage
+        // load entries from local storage
         function loadEntries() {
             const savedEntries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
             savedEntries.forEach(function(entry) {
@@ -182,7 +182,7 @@ h1 {
             });
         }
 
-        // Display entry with a random color
+        // display entry with a random color
         function displayEntry(name, message) {
             const entry = document.createElement("div");
             entry.classList.add("entry");
@@ -197,14 +197,14 @@ h1 {
             messageElement.textContent = message;
             entry.appendChild(messageElement);
 
-            // Generate random color for each entry
+            // generate random color for each entry
             const randomColor = getRandomColor();
             entry.style.color = randomColor;
 
             entryContainer.appendChild(entry);
         }
 
-        // Generate a random color
+        // generate a random color
         function getRandomColor() {
             const letters = "0123456789ABCDEF";
             let color = "#";
@@ -214,10 +214,10 @@ h1 {
             return color;
         }
 
-        // Load existing entries on page load
+        // load existing entries on page load
         loadEntries();
 
-        // Event listener for form submission
+        // event listener for form submission
         guestbookForm.addEventListener("submit", function(event) {
             event.preventDefault();
             
@@ -232,15 +232,15 @@ h1 {
                 return;
             }
 
-            // Display entry with a random color
+            // display entry with a random color
             displayEntry(name, message);
 
-            // Save entry to local storage
+            // save entry to local storage
             const savedEntries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
             savedEntries.push({ name: name, message: message });
             localStorage.setItem("guestbookEntries", JSON.stringify(savedEntries));
 
-            // Clear form inputs after adding entry
+            // clear form inputs after adding entry
             nameInput.value = "";
             messageInput.value = "";
         });
