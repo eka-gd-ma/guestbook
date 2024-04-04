@@ -66,34 +66,32 @@ h1 {
         padding: 20px;
         margin-top: 15px;
         text-align: left;
-        max-width: calc(100% - 500px); /* Adjust the width as needed */
-        overflow-wrap: break-word; /* Allow long words to break */
+        max-width: calc(100% - 500px);
+        overflow-wrap: break-word;
         font-family: "ocr-a-std", monospace;
         font-weight: 400;
         font-style: normal;
     }
 
-.entry {
-        margin-bottom: 10px;
-        max-height: 800px
-        overflow-y: auto;
-    }
-
     #entry-container {
-    max-width: 600px;
-    overflow-y: auto; /* Enable vertical scrolling */
-    max-height: 700px; /* Set a fixed height */
+    max-height: 800px; 
+    overflow-y: auto; 
+    padding-right: 15px; 
 }
 
-#background-image {
-  position: fixed;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 300px; /* Adjust the width of the image */
-  height: 300px; /* Adjust the height of the image */
-  background-image: url('images/scribble.png');
-  background-size: cover;
-  z-index: -1;
+.entry {
+    margin-bottom: 5px;
+}
+
+    #background-image {
+    position: fixed;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 300px; 
+    height: 300px;
+    background-image: url('images/scribble.png');
+    background-size: cover;
+    z-index: -1;
 }
 
 #background-image-2 {
@@ -101,8 +99,8 @@ h1 {
   bottom: 0;
   left: 49%;
   transform: translateX(-50%);
-  width: 300px; /* Adjust the width of the image */
-  height: 300px; /* Adjust the height of the image */
+  width: 300px; 
+  height: 300px;
   background-image: url('images/pat.gif');
   background-size: cover;
   z-index: -1;
@@ -112,6 +110,28 @@ h1 {
     width: 0px;
     background: transparent;
     } 
+
+    @media (max-width: 768px) {
+    /* hide guestbook and background imgs on mobile */
+    #guestbook, #background-image, #background-image-2, #header, #header-img {
+        display: none;
+    }
+
+    /* adjust entries container for full width on mobile */
+    #entries {
+        margin-top: 15px;
+        position: static;
+        width: 100%;
+        max-width: none;
+        margin-top: 0;
+        padding: 10px;
+    }
+
+      .entry {
+        font-size: 14px; 
+        margin-bottom: 10px; 
+    }
+}
 
 
 </style>
@@ -127,6 +147,9 @@ h1 {
     <img src="images/header.png" alt="Header Image">
 </div>
 
+<!-- placeholder for entries -->
+<div id="entriesPlaceholder"></div>
+
 <div id="content">
 <div id="guestbook">
     <h1>DIGITAL GUESTBOOK</h1>
@@ -140,25 +163,58 @@ h1 {
 
 <div id="entries">
     <div id="entry-container">
-    <!-- Entries will be displayed here -->
+    <!-- entries will be displayed here -->
+    <div class="entry" style="color: rgb(231, 70, 22);"><span class="name">Laura: </span><span class="message">We had an amazing time!</span></div>
+    <div class="entry" style="color: rgb(140, 162, 119);"><span class="name">tima: </span><span class="message">i'm hungry</span></div>
+    <div class="entry" style="color: rgb(123, 137, 174);"><span class="name">anna: </span><span class="message">im so excited and tired</span></div>
+    <div class="entry" style="color: rgb(213, 145, 78);"><span class="name">paula: </span><span class="message">i love eka gd ma forever to be honest and i mean it</span></div>
+    <div class="entry" style="color: rgb(143, 123, 56);"><span class="name">björn: </span><span class="message">can i borrow a knife from you ... ? xoxo</span></div>
+    <div class="entry" style="color: rgb(32, 123, 250);"><span class="name">corinne: </span><span class="message">thank u cuties <33</span></div>
+    <div class="entry" style="color: rgb(150, 87, 25);"><span class="name">urtina: </span><span class="message">I wish all of you have a great weekend after this month !!!</span></div>
+    <div class="entry" style="color: rgb(191, 25, 229);"><span class="name">413j4ndr0: </span><span class="message">always forever ever </span></div>
+    <div class="entry" style="color: rgb(36, 152, 67);"><span class="name">cicici: </span><span class="message">Hello everyone. Thank you for
+    this amazing experimental opportunity, it was wonderfully inspiring and nice. Thankyou for the effort <3 <3 you are amazing</span></div>
+    <div class="entry" style="color: rgb(97, 92, 123);"><span class="name">RITA: </span><span class="message">I DON,T LIKE BERLIN WITHOUT YOU GUYS. DON,T LEAVE </span></div>
+    <div class="entry" style="color: rgb(126, 31, 196);"><span class="name">muj: </span><span class="message">if you read this message now that means you are reading it here now. 
+    or maybe later. or maybe on the wall. but maybe it will make it to a printed letter. who knows? seems like everything is possible at this magical School. 
+    Thank you for creating this magical corner in Berlin. I will forever cherish these memories in my phone photo gallery in IG stories and even on papers.
+    cause i love paper i know you do too. cause you gave me a lot of it. and i promise i am not going to throw them away. only unless i move out.
+    anyway i'll stop now. love you alllll <3 <3 <3</span></div>
+    <div class="entry" style="color: rgb(5, 189, 164);"><span class="name">Zoë: </span><span class="message">This was so cool!! Go Stand-In-School!! Stand HARD!! #LearnForLife
+        #Love2Learn Go School! Thanks for all the cool talks :-) Next time more snacks please Hugs! :-)</span></div>
+    <div class="entry" style="color: rgb(198, 58, 127);"><span class="name">tima: </span><span class="message">i like alex's music</span></div>
+    <div class="entry" style="color: rgb(191, 155, 130);"><span class="name">linnea: </span><span class="message">I laughed, I cried a number of
+        times, I sweated, I danced, I got shot, I ate, and I had many epiphanies</span></div>
+    <div class="entry" style="color: rgb(79, 152, 164);"><span class="name">archil: </span><span class="message">DJ blow the speakers up!!!!!</span></div>
+    <div class="entry" style="color: rgb(58, 112, 85);"><span class="name">ingel: </span><span class="message">thank you for bringing the piece
+        of eka vibes i missed straight to my front door in berlin! gave me a reason to come out every wednesday evening and meet cute people and learn new things 
+        and really miss going to art school honestly <3</span></div>
+    <div class="entry" style="color: rgb(227, 134, 146);"><span class="name">NILYAAAA: </span><span class="message">DANKE SPASIBO COX SAG OL TAK SO MIKKET MERCI BEACOUP :)</span></div>
+    <div class="entry" style="color: rgb(233, 103, 72);"><span class="name">Maxim: </span><span class="message">I hope the God will help us all. Thank you for this event. You bless.</span></div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 </div>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const guestbookForm = document.getElementById("guestbookForm");
-        const entryContainer = document.getElementById("entry-container");
+document.addEventListener("DOMContentLoaded", function() {
+    const guestbookForm = document.getElementById("guestbookForm");
+    const entryContainer = document.getElementById("entry-container");
 
-        // Load entries from local storage
-        function loadEntries() {
-            const savedEntries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
-            savedEntries.forEach(function(entry) {
-                displayEntry(entry.name, entry.message);
-            });
-        }
 
-        // Display entry with a random color
+
+     // load entries from local storage
+    function loadEntries() {
+        const savedEntries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
+        savedEntries.forEach(function(entry) {
+            displayEntry(entry.name, entry.message);
+        });
+        adjustContainerHeight(); 
+    }
+
+
+
+        // color randomizer
         function displayEntry(name, message) {
             const entry = document.createElement("div");
             entry.classList.add("entry");
@@ -173,14 +229,13 @@ h1 {
             messageElement.textContent = message;
             entry.appendChild(messageElement);
 
-            // Generate random color for each entry
             const randomColor = getRandomColor();
             entry.style.color = randomColor;
 
             entryContainer.appendChild(entry);
         }
 
-        // Generate a random color
+
         function getRandomColor() {
             const letters = "0123456789ABCDEF";
             let color = "#";
@@ -190,10 +245,20 @@ h1 {
             return color;
         }
 
-        // Load existing entries on page load
+        function adjustContainerHeight() {
+        const entriesHeight = entryContainer.scrollHeight;
+        const maxHeight = parseFloat(window.getComputedStyle(entryContainer).maxHeight);
+        if (entriesHeight > maxHeight) {
+            entryContainer.style.height = `${maxHeight}px`;
+        } else {
+            entryContainer.style.height = "auto";
+        }
+    }
+
+
         loadEntries();
 
-        // Event listener for form submission
+        // form submission
         guestbookForm.addEventListener("submit", function(event) {
             event.preventDefault();
             
@@ -208,19 +273,38 @@ h1 {
                 return;
             }
 
-            // Display entry with a random color
             displayEntry(name, message);
 
-            // Save entry to local storage
+            // save entry to local storage
             const savedEntries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
             savedEntries.push({ name: name, message: message });
             localStorage.setItem("guestbookEntries", JSON.stringify(savedEntries));
 
-            // Clear form inputs after adding entry
+            // clear form inputs after adding entry
             nameInput.value = "";
             messageInput.value = "";
         });
     });
+
+    function showEntriesOnScroll() {
+        const header = document.getElementById("header");
+        const entriesPlaceholder = document.getElementById("entriesPlaceholder");
+
+        window.addEventListener("scroll", function() {
+            const headerBottom = header.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight;
+
+            if (headerBottom <= viewportHeight) {
+
+                entriesPlaceholder.style.display = "block";
+                loadEntries();
+
+                window.removeEventListener("scroll", showEntriesOnScroll);
+            }
+        });
+    }
+
+    showEntriesOnScroll();
 </script>
 
 </body>
